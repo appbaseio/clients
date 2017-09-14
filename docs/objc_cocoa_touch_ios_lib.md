@@ -66,16 +66,16 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
 Configuration variables can be set as following.
 ```Objc
 // Configuration parameters and credentials
-Configuration_BasicAuthUserName = "Configuration_BasicAuthUserName"; // The username to use with basic authentication
-Configuration_BasicAuthPassword = "Configuration_BasicAuthPassword"; // The password to use with basic authentication
+Configuration_Username = "TODO: Replace this"; // username is the first part of the credentials (before ':')
+Configuration_Password = "TODO: Replace this"; // password is the second part of the credentials (after ':')
 
 ```
 
@@ -83,16 +83,16 @@ Configuration_BasicAuthPassword = "Configuration_BasicAuthPassword"; // The pass
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png ".IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png ".AppController") AppController
 
 ### Get singleton instance
 ```objc
-IndexAPIs* indexAPIs = [[IndexAPIs alloc]init] ;
+App* app = [[App alloc]init] ;
 ```
 
-### <a name="g_et_app_async_with_app"></a>![Method: ](https://apidocs.io/img/method.png ".IndexAPIsController.gETAppAsyncWithApp") gETAppAsyncWithApp
+### <a name="g_et_app_async_with_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppAsyncWithApp") gETAppAsyncWithApp
 
 > Informational endpoint.
 
@@ -118,7 +118,76 @@ function gETAppAsyncWithApp:(NSString*) app
     // Parameters for the API call
     NSString* app = @"app";
 
-    [self.indexAPIs gETAppAsyncWithApp: app  completionBlock:^(BOOL success, HttpContext* context, id response, NSError* error) { 
+    [self.app gETAppAsyncWithApp: app  completionBlock:^(BOOL success, HttpContext* context, id response, NSError* error) { 
+       //Add code here
+    }];
+```
+
+
+### <a name="g_et_app_settings_async_with_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppSettingsAsyncWithApp") gETAppSettingsAsyncWithApp
+
+> Get settings in an app
+
+
+```objc
+function gETAppSettingsAsyncWithApp:(NSString*) app
+                queryParameters:(NSDictionary*) queryParameters
+                completionBlock:(CompletedGETAppSettings) onCompleted(app  queryParameters : queryParams)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+
+
+
+#### Example Usage
+
+```objc
+    // Parameters for the API call
+    NSString* app = @"app";
+    // Dictionary for optional query parameters
+    NSMutableDictionary* queryParamsMutable = [[NSMutableDictionary alloc] init];
+    NSDictionary *queryParams= [queryParamsMutable copy];
+
+    [self.app gETAppSettingsAsyncWithApp: app  queryParameters : queryParams  completionBlock:^(BOOL success, HttpContext* context, id response, NSError* error) { 
+       //Add code here
+    }];
+```
+
+
+### <a name="g_et_app_mappings_async_with_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppMappingsAsyncWithApp") gETAppMappingsAsyncWithApp
+
+> Get an app's mappings.
+
+
+```objc
+function gETAppMappingsAsyncWithApp:(NSString*) app
+                completionBlock:(CompletedGETAppMappings) onCompleted(app)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+
+
+
+#### Example Usage
+
+```objc
+    // Parameters for the API call
+    NSString* app = @"app";
+
+    [self.app gETAppMappingsAsyncWithApp: app  completionBlock:^(BOOL success, HttpContext* context, id response, NSError* error) { 
        //Add code here
     }];
 ```

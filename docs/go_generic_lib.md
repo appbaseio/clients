@@ -106,8 +106,8 @@ In order to setup authentication of the API client, you need the following infor
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 To configure these for your generated code, open the file "Configuration.go" and edit it's contents.
@@ -117,25 +117,25 @@ To configure these for your generated code, open the file "Configuration.go" and
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [indexapis_pkg](#indexapis_pkg)
+* [app_pkg](#app_pkg)
 
-## <a name="indexapis_pkg"></a>![Class: ](https://apidocs.io/img/class.png ".indexapis_pkg") indexapis_pkg
+## <a name="app_pkg"></a>![Class: ](https://apidocs.io/img/class.png ".app_pkg") app_pkg
 
 ### Get instance
 
-Factory for the ``` INDEXAPIS ``` interface can be accessed from the package indexapis_pkg.
+Factory for the ``` APP ``` interface can be accessed from the package app_pkg.
 
 ```go
-indexAPIs := indexapis_pkg.NewINDEXAPIS()
+app := app_pkg.NewAPP()
 ```
 
-### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png ".indexapis_pkg.GETApp") GETApp
+### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png ".app_pkg.GETApp") GETApp
 
 > Informational endpoint.
 
 
 ```go
-func (me *INDEXAPIS_IMPL) GETApp(app string)(interface{},error)
+func (me *APP_IMPL) GETApp(app string)(interface{},error)
 ```
 
 #### Parameters
@@ -151,7 +151,67 @@ func (me *INDEXAPIS_IMPL) GETApp(app string)(interface{},error)
 app := "app"
 
 var result interface{}
-result,_ = indexAPIs.GETApp(app)
+result,_ = app.GETApp(app)
+
+```
+
+
+### <a name="get_app_settings"></a>![Method: ](https://apidocs.io/img/method.png ".app_pkg.GETAppSettings") GETAppSettings
+
+> Get settings in an app
+
+
+```go
+func (me *APP_IMPL) GETAppSettings(
+            app string,
+                queryParameters map[string]interface{})(interface{},error)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+#### Example Usage
+
+```go
+app := "app"
+// key-value map for optional query parameters
+	queryParams := map[string]interface{}{"key" : "value"}
+
+
+var result interface{}
+result,_ = app.GETAppSettings(app, queryParams)
+
+```
+
+
+### <a name="get_app_mappings"></a>![Method: ](https://apidocs.io/img/method.png ".app_pkg.GETAppMappings") GETAppMappings
+
+> Get an app's mappings.
+
+
+```go
+func (me *APP_IMPL) GETAppMappings(app string)(interface{},error)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+#### Example Usage
+
+```go
+app := "app"
+
+var result interface{}
+result,_ = app.GETAppMappings(app)
 
 ```
 

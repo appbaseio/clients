@@ -95,8 +95,8 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
@@ -104,11 +104,11 @@ API client can be initialized as following. The `appContext` being passed is the
 
 ```java
 // Configuration parameters and credentials
-String basicAuthUserName = "basicAuthUserName"; // The username to use with basic authentication
-String basicAuthPassword = "basicAuthPassword"; // The password to use with basic authentication
+String username = "TODO: Replace this"; // username is the first part of the credentials (before ':')
+String password = "TODO: Replace this"; // password is the second part of the credentials (after ':')
 
 io.appbase.api.scalr.Configuration.initialize(appContext);
-AppbaseAPIClient client = new AppbaseAPIClient(basicAuthUserName, basicAuthPassword);
+AppbaseAPIClient client = new AppbaseAPIClient(username, password);
 ```
 
 
@@ -116,19 +116,19 @@ AppbaseAPIClient client = new AppbaseAPIClient(basicAuthUserName, basicAuthPassw
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png "io.appbase.api.scalr.controllers.IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png "io.appbase.api.scalr.controllers.AppController") AppController
 
 ### Get singleton instance
 
-The singleton instance of the ``` IndexAPIsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` AppController ``` class can be accessed from the API Client.
 
 ```java
-IndexAPIsController indexAPIs = client.getIndexAPIs();
+AppController app = client.getApp();
 ```
 
-### <a name="g_et_app_async"></a>![Method: ](https://apidocs.io/img/method.png "io.appbase.api.scalr.controllers.IndexAPIsController.gETAppAsync") gETAppAsync
+### <a name="g_et_app_async"></a>![Method: ](https://apidocs.io/img/method.png "io.appbase.api.scalr.controllers.AppController.gETAppAsync") gETAppAsync
 
 > Informational endpoint.
 
@@ -151,7 +151,81 @@ void gETAppAsync(
 ```java
 String app = "app";
 // Invoking the API call with sample inputs
-indexAPIs.gETAppAsync(app, new APICallBack<DynamicResponse>() {
+app.gETAppAsync(app, new APICallBack<DynamicResponse>() {
+    public void onSuccess(HttpContext context, DynamicResponse response) {
+        // TODO success callback handler
+    }
+    public void onFailure(HttpContext context, Throwable error) {
+        // TODO failure callback handler
+    }
+});
+
+```
+
+
+### <a name="g_et_app_settings_async"></a>![Method: ](https://apidocs.io/img/method.png "io.appbase.api.scalr.controllers.AppController.gETAppSettingsAsync") gETAppSettingsAsync
+
+> Get settings in an app
+
+
+```java
+void gETAppSettingsAsync(
+        final String app,
+        Map<String, Object> queryParameters,
+        final APICallBack<DynamicResponse> callBack)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+#### Example Usage
+
+```java
+String app = "app";
+// key-value map for optional query parameters
+Map<String, Object> queryParams = new LinkedHashMap<String, Object>();
+// Invoking the API call with sample inputs
+app.gETAppSettingsAsync(app, queryParams, new APICallBack<DynamicResponse>() {
+    public void onSuccess(HttpContext context, DynamicResponse response) {
+        // TODO success callback handler
+    }
+    public void onFailure(HttpContext context, Throwable error) {
+        // TODO failure callback handler
+    }
+});
+
+```
+
+
+### <a name="g_et_app_mappings_async"></a>![Method: ](https://apidocs.io/img/method.png "io.appbase.api.scalr.controllers.AppController.gETAppMappingsAsync") gETAppMappingsAsync
+
+> Get an app's mappings.
+
+
+```java
+void gETAppMappingsAsync(
+        final String app,
+        final APICallBack<DynamicResponse> callBack)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+#### Example Usage
+
+```java
+String app = "app";
+// Invoking the API call with sample inputs
+app.gETAppMappingsAsync(app, new APICallBack<DynamicResponse>() {
     public void onSuccess(HttpContext context, DynamicResponse response) {
         // TODO success callback handler
     }

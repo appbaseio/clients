@@ -88,8 +88,8 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| basic_auth_user_name | The username to use with basic authentication |
-| basic_auth_password | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
@@ -97,10 +97,10 @@ API client can be initialized as following.
 
 ```python
 # Configuration parameters and credentials
-basic_auth_user_name = 'basic_auth_user_name' # The username to use with basic authentication
-basic_auth_password = 'basic_auth_password' # The password to use with basic authentication
+username = 'TODO: Replace this' # username is the first part of the credentials (before ':')
+password = 'TODO: Replace this' # password is the second part of the credentials (after ':')
 
-client = AppbaseapiClient(basic_auth_user_name, basic_auth_password)
+client = AppbaseapiClient(username, password)
 ```
 
 
@@ -109,19 +109,19 @@ client = AppbaseapiClient(basic_auth_user_name, basic_auth_password)
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png ".IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png ".AppController") AppController
 
 ### Get controller instance
 
-An instance of the ``` IndexAPIsController ``` class can be accessed from the API Client.
+An instance of the ``` AppController ``` class can be accessed from the API Client.
 
 ```python
- index_ap_is_client = client.index_ap_is
+ app_client = client.app
 ```
 
-### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png ".IndexAPIsController.get_app") get_app
+### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.get_app") get_app
 
 > Informational endpoint.
 
@@ -143,7 +143,66 @@ def get_app(self,
 ```python
 app = 'app'
 
-result = index_ap_is_client.get_app(app)
+result = app_client.get_app(app)
+
+```
+
+
+### <a name="get_app__settings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.get_app__settings") get_app__settings
+
+> Get settings in an app
+
+```python
+def get_app__settings(self,
+                          app,
+                          _optional_query_parameters=None)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| _optional_query_parameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+
+#### Example Usage
+
+```python
+app = 'app'
+# key-value map for optional query parameters
+optional_query_parameters = { }
+
+
+result = app_client.get_app__settings(app, optional_query_parameters)
+
+```
+
+
+### <a name="get_app__mappings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.get_app__mappings") get_app__mappings
+
+> Get an app's mappings.
+
+```python
+def get_app__mappings(self,
+                          app)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+
+#### Example Usage
+
+```python
+app = 'app'
+
+result = app_client.get_app__mappings(app)
 
 ```
 

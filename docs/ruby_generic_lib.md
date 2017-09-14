@@ -71,8 +71,8 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| basic_auth_user_name | The username to use with basic authentication |
-| basic_auth_password | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
@@ -80,18 +80,18 @@ API client can be initialized as following.
 
 ```ruby
 # Configuration parameters and credentials
-basic_auth_user_name = 'basic_auth_user_name' # The username to use with basic authentication
-basic_auth_password = 'basic_auth_password' # The password to use with basic authentication
+username = 'TODO: Replace this' # username is the first part of the credentials (before ':')
+password = 'TODO: Replace this' # password is the second part of the credentials (after ':')
 
 client = AppbaseApi::AppbaseApiClient.new(
-  basic_auth_user_name: basic_auth_user_name,
-  basic_auth_password: basic_auth_password
+  username: username,
+  password: password
 )
 ```
 
 The added initlization code can be debugged by putting a breakpoint in the ``` Index ``` method and running the project in debug mode by selecting ``` Run -> Debug 'Development: TestApp' ```.
 
-![Debug the TestApp](https://apidocs.io/illustration/ruby?step=addCode4&workspaceFolder=Appbase%20API-Ruby&workspaceName=AppbaseApi&projectName=appbase_api&gemName=appbase_api&gemVer=1.0.0&initLine=client%2520%253D%2520AppbaseApiClient.new%2528%2527basic_auth_user_name%2527%252C%2520%2527basic_auth_password%2527%2529)
+![Debug the TestApp](https://apidocs.io/illustration/ruby?step=addCode4&workspaceFolder=Appbase%20API-Ruby&workspaceName=AppbaseApi&projectName=appbase_api&gemName=appbase_api&gemVer=1.0.0&initLine=client%2520%253D%2520AppbaseApiClient.new%2528%2527username%2527%252C%2520%2527password%2527%2529)
 
 
 
@@ -99,19 +99,19 @@ The added initlization code can be debugged by putting a breakpoint in the ``` I
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png ".IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png ".AppController") AppController
 
 ### Get singleton instance
 
-The singleton instance of the ``` IndexAPIsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` AppController ``` class can be accessed from the API Client.
 
 ```ruby
-indexAPIs = client.index_ap_is
+app = client.app
 ```
 
-### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png ".IndexAPIsController.get_app") get_app
+### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.get_app") get_app
 
 > Informational endpoint.
 
@@ -132,7 +132,63 @@ def get_app(app); end
 ```ruby
 app = 'app'
 
-result = indexAPIs.get_app(app)
+result = app.get_app(app)
+
+```
+
+
+### <a name="get_app__settings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.get_app__settings") get_app__settings
+
+> Get settings in an app
+
+
+```ruby
+def get_app__settings(app,
+                          _query_parameters = nil); end
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| _query_parameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+#### Example Usage
+
+```ruby
+app = 'app'
+# key-value map for optional query parameters
+queryParams = { 'key' => 'value' }
+
+result = app.get_app__settings(app, queryParams)
+
+```
+
+
+### <a name="get_app__mappings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.get_app__mappings") get_app__mappings
+
+> Get an app's mappings.
+
+
+```ruby
+def get_app__mappings(app); end
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+#### Example Usage
+
+```ruby
+app = 'app'
+
+result = app.get_app__mappings(app)
 
 ```
 

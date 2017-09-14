@@ -100,8 +100,8 @@ In order to setup authentication in the API client, you need the following infor
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
@@ -111,8 +111,8 @@ API client can be initialized as following:
 const lib = require('lib');
 
 // Configuration parameters and credentials
-lib.Configuration.basicAuthUserName = "basicAuthUserName"; // The username to use with basic authentication
-lib.Configuration.basicAuthPassword = "basicAuthPassword"; // The password to use with basic authentication
+lib.Configuration.username = "TODO: Replace this"; // username is the first part of the credentials (before ':')
+lib.Configuration.password = "TODO: Replace this"; // password is the second part of the credentials (after ':')
 
 ```
 
@@ -122,19 +122,19 @@ lib.Configuration.basicAuthPassword = "basicAuthPassword"; // The password to us
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png ".IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png ".AppController") AppController
 
 ### Get singleton instance
 
-The singleton instance of the ``` IndexAPIsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` AppController ``` class can be accessed from the API Client.
 
 ```javascript
-var controller = lib.IndexAPIsController;
+var controller = lib.AppController;
 ```
 
-### <a name="g_et_app"></a>![Method: ](https://apidocs.io/img/method.png ".IndexAPIsController.gETApp") gETApp
+### <a name="g_et_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETApp") gETApp
 
 > Informational endpoint.
 
@@ -157,6 +157,70 @@ function gETApp(app, callback)
     var app = 'app';
 
     controller.gETApp(app, function(error, response, context) {
+
+    
+    });
+```
+
+
+
+### <a name="g_et_app_settings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppSettings") gETAppSettings
+
+> Get settings in an app
+
+
+```javascript
+function gETAppSettings(app, queryParams, callback)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+
+#### Example Usage
+
+```javascript
+
+    var app = 'app';
+
+    // key-value map for optional query parameters
+    var queryParams = [];
+
+    controller.gETAppSettings(app, queryParams, function(error, response, context) {
+
+    
+    });
+```
+
+
+
+### <a name="g_et_app_mappings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppMappings") gETAppMappings
+
+> Get an app's mappings.
+
+
+```javascript
+function gETAppMappings(app, callback)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+
+#### Example Usage
+
+```javascript
+
+    var app = 'app';
+
+    controller.gETAppMappings(app, function(error, response, context) {
 
     
     });
