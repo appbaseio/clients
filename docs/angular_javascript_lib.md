@@ -95,7 +95,7 @@ Import the reference to the generated SDK files inside your html file like:
 
     <!-- API Controllers -->
     <script src="scripts/AppbaseAPILib/Controllers/BaseController.js"></script>
-    <script src="scripts/AppbaseAPILib/Controllers/IndexAPIsController.js"></script>
+    <script src="scripts/AppbaseAPILib/Controllers/AppController.js"></script>
 
 
     <!-- Models -->
@@ -163,8 +163,8 @@ In order to setup authentication and initialization of the Angular App, you need
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
@@ -175,8 +175,8 @@ app.factory('config', function($scope, Configuration)
     return {
         setConfigVars: function() {
             // Configuration parameters and credentials
-            Configuration.basicAuthUserName = 'basicAuthUserName'; // The username to use with basic authentication
-            Configuration.basicAuthPassword = 'basicAuthPassword'; // The password to use with basic authentication
+            Configuration.username = 'TODO: Replace this'; // username is the first part of the credentials (before ':')
+            Configuration.password = 'TODO: Replace this'; // password is the second part of the credentials (after ':')
             
         }
     };
@@ -189,20 +189,20 @@ app.factory('config', function($scope, Configuration)
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png ".IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png ".AppController") AppController
 
 ### Get singleton instance
 
-The singleton instance of the ``` IndexAPIsController ``` class can be accessed via Dependency Injection.
+The singleton instance of the ``` AppController ``` class can be accessed via Dependency Injection.
 
 ```js
-	app.controller("testController", function($scope, IndexAPIsController){
+	app.controller("testController", function($scope, AppController){
 	});
 ```
 
-### <a name="g_et_app"></a>![Method: ](https://apidocs.io/img/method.png ".IndexAPIsController.gETApp") gETApp
+### <a name="g_et_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETApp") gETApp
 
 > Informational endpoint.
 
@@ -223,11 +223,95 @@ function gETApp(app)
 ```javascript
 
 
-	app.controller("testController", function($scope, IndexAPIsController){
+	app.controller("testController", function($scope, AppController){
         var app = 'app';
 
 
-		var result = IndexAPIsController.gETApp(app);
+		var result = AppController.gETApp(app);
+        //Function call returns a promise
+        result.then(function(success){
+			//success case
+			//getting context of response
+			console.log(success.getContext());
+		},function(err){
+			//failure case
+		});
+
+	});
+```
+
+
+
+### <a name="g_et_app_settings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppSettings") gETAppSettings
+
+> Get settings in an app
+
+
+```javascript
+function gETAppSettings(app, queryParameters)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+
+#### Example Usage
+
+```javascript
+
+
+	app.controller("testController", function($scope, AppController){
+        var app = 'app';
+
+        // key-value map for optional query parameters
+        var queryParameters = [];
+
+
+		var result = AppController.gETAppSettings(app, queryParameters);
+        //Function call returns a promise
+        result.then(function(success){
+			//success case
+			//getting context of response
+			console.log(success.getContext());
+		},function(err){
+			//failure case
+		});
+
+	});
+```
+
+
+
+### <a name="g_et_app_mappings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppMappings") gETAppMappings
+
+> Get an app's mappings.
+
+
+```javascript
+function gETAppMappings(app)
+```
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+
+#### Example Usage
+
+```javascript
+
+
+	app.controller("testController", function($scope, AppController){
+        var app = 'app';
+
+
+		var result = AppController.gETAppMappings(app);
         //Function call returns a promise
         result.then(function(success){
 			//success case

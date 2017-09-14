@@ -113,18 +113,18 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
 API client can be initialized as following.
 
 ```php
-$basicAuthUserName = 'basicAuthUserName'; // The username to use with basic authentication
-$basicAuthPassword = 'basicAuthPassword'; // The password to use with basic authentication
+$username = 'TODO: Replace this'; // username is the first part of the credentials (before ':')
+$password = 'TODO: Replace this'; // password is the second part of the credentials (after ':')
 
-$client = new AppbaseAPILib\AppbaseAPIClient($basicAuthUserName, $basicAuthPassword);
+$client = new AppbaseAPILib\AppbaseAPIClient($username, $password);
 ```
 
 
@@ -132,19 +132,19 @@ $client = new AppbaseAPILib\AppbaseAPIClient($basicAuthUserName, $basicAuthPassw
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png ".IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png ".AppController") AppController
 
 ### Get singleton instance
 
-The singleton instance of the ``` IndexAPIsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` AppController ``` class can be accessed from the API Client.
 
 ```php
-$indexAPIs = $client->getIndexAPIs();
+$app = $client->getApp();
 ```
 
-### <a name="g_et_app"></a>![Method: ](https://apidocs.io/img/method.png ".IndexAPIsController.gETApp") gETApp
+### <a name="g_et_app"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETApp") gETApp
 
 > Informational endpoint.
 
@@ -166,7 +166,67 @@ function gETApp($app)
 ```php
 $app = 'app';
 
-$result = $indexAPIs->gETApp($app);
+$result = $app->gETApp($app);
+
+```
+
+
+### <a name="g_et_app_settings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppSettings") gETAppSettings
+
+> Get settings in an app
+
+
+```php
+function gETAppSettings(
+        $app,
+        $queryParameters = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+
+#### Example Usage
+
+```php
+$app = 'app';
+// key-value map for optional query parameters
+$queryParams = array('key' => 'value');
+
+
+$result = $app->gETAppSettings($app, $queryParams);
+
+```
+
+
+### <a name="g_et_app_mappings"></a>![Method: ](https://apidocs.io/img/method.png ".AppController.gETAppMappings") gETAppMappings
+
+> Get an app's mappings.
+
+
+```php
+function gETAppMappings($app)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+
+#### Example Usage
+
+```php
+$app = 'app';
+
+$result = $app->gETAppMappings($app);
 
 ```
 

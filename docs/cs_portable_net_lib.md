@@ -67,8 +67,8 @@ In order to setup authentication and initialization of the API client, you need 
 
 | Parameter | Description |
 |-----------|-------------|
-| basicAuthUserName | The username to use with basic authentication |
-| basicAuthPassword | The password to use with basic authentication |
+| username | username is the first part of the credentials (before ':') |
+| password | password is the second part of the credentials (after ':') |
 
 
 
@@ -76,10 +76,10 @@ API client can be initialized as following.
 
 ```csharp
 // Configuration parameters and credentials
-string basicAuthUserName = "basicAuthUserName"; // The username to use with basic authentication
-string basicAuthPassword = "basicAuthPassword"; // The password to use with basic authentication
+string username = "TODO: Replace this"; // username is the first part of the credentials (before ':')
+string password = "TODO: Replace this"; // password is the second part of the credentials (after ':')
 
-AppbaseAPIClient client = new AppbaseAPIClient(basicAuthUserName, basicAuthPassword);
+AppbaseAPIClient client = new AppbaseAPIClient(username, password);
 ```
 
 
@@ -88,19 +88,19 @@ AppbaseAPIClient client = new AppbaseAPIClient(basicAuthUserName, basicAuthPassw
 
 ## <a name="list_of_controllers"></a>List of Controllers
 
-* [IndexAPIsController](#index_ap_is_controller)
+* [AppController](#app_controller)
 
-## <a name="index_ap_is_controller"></a>![Class: ](https://apidocs.io/img/class.png "AppbaseAPI.PCL.Controllers.IndexAPIsController") IndexAPIsController
+## <a name="app_controller"></a>![Class: ](https://apidocs.io/img/class.png "AppbaseAPI.PCL.Controllers.AppController") AppController
 
 ### Get singleton instance
 
-The singleton instance of the ``` IndexAPIsController ``` class can be accessed from the API Client.
+The singleton instance of the ``` AppController ``` class can be accessed from the API Client.
 
 ```csharp
-IndexAPIsController indexAPIs = client.IndexAPIs;
+AppController app = client.App;
 ```
 
-### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png "AppbaseAPI.PCL.Controllers.IndexAPIsController.GETApp") GETApp
+### <a name="get_app"></a>![Method: ](https://apidocs.io/img/method.png "AppbaseAPI.PCL.Controllers.AppController.GETApp") GETApp
 
 > Informational endpoint.
 
@@ -121,7 +121,63 @@ Task<dynamic> GETApp(string app)
 ```csharp
 string app = "app";
 
-dynamic result = await indexAPIs.GETApp(app);
+dynamic result = await app.GETApp(app);
+
+```
+
+
+### <a name="get_app_settings"></a>![Method: ](https://apidocs.io/img/method.png "AppbaseAPI.PCL.Controllers.AppController.GETAppSettings") GETAppSettings
+
+> Get settings in an app
+
+
+```csharp
+Task<dynamic> GETAppSettings(string app, Dictionary<string, object> queryParameters = null)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+| queryParameters | ``` Optional ``` | Additional optional query parameters are supported by this method |
+
+
+#### Example Usage
+
+```csharp
+string app = "app";
+// key-value map for optional query parameters
+var queryParams = new Dictionary<string, object>();
+
+
+dynamic result = await app.GETAppSettings(app, queryParams);
+
+```
+
+
+### <a name="get_app_mappings"></a>![Method: ](https://apidocs.io/img/method.png "AppbaseAPI.PCL.Controllers.AppController.GETAppMappings") GETAppMappings
+
+> Get an app's mappings.
+
+
+```csharp
+Task<dynamic> GETAppMappings(string app)
+```
+
+#### Parameters
+
+| Parameter | Tags | Description |
+|-----------|------|-------------|
+| app |  ``` Required ```  | App name |
+
+
+#### Example Usage
+
+```csharp
+string app = "app";
+
+dynamic result = await app.GETAppMappings(app);
 
 ```
 
